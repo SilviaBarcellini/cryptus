@@ -1,0 +1,27 @@
+{
+  "name": "cryptus",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "dist/app.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/app.js",
+    "test": "echo \"Error: no test specifined\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SilviaBarcellini/cryptus.git"
+  },
+  "author": "Silvia Barcellini",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SilviaBarcellini/cryptus/issues"
+  },
+  "homepage": "https://github.com/SilviaBarcellini/cryptus#readme",
+  "devDependencies": {
+    "@types/node": "^14.14.31",
+    "typescript": "^4.2.2"
+  }
+}
