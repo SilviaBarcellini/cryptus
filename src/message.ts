@@ -11,9 +11,11 @@ export const printCannotEnter = () => {
 };
 
 export const printPasswordSet = (passwordName: string) => {
-  console.log(`You set a new ${passwordName} password.`);
+  console.log(chalk.green(`You set a new ${passwordName} password.`));
 };
 
 export const printPassword = (passwordName: string, PasswordValue: string) => {
-  console.log(`Your ${passwordName} password is ${PasswordValue}!`);
+  console.log(
+    chalk.magenta(`Your ${passwordName} password is ${PasswordValue}!`)
+  );
 };
