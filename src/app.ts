@@ -1,10 +1,13 @@
-console.log("Welcome to Cryptus 🗝");
+import prompts from "prompts";
 
-//console.log(process.argv);
-const [command] = process.argv.slice(2);
+const run = async () => {
+  const response = await prompts({
+    type: "number",
+    name: "value",
+    message: "How old are you?",
+    validate: (value) => (value < 18 ? `Sorry, Cryptus is 18+ only` : true),
+  });
+  console.log("Welcome to Cryptus 🔑");
+};
 
-if (command === "set") {
-  console.log("You like to set something?");
-} else if (command === "get") {
-  console.log("What should I get?");
-}
+run();
