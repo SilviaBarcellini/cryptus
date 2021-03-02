@@ -1,9 +1,10 @@
 import prompts from "prompts";
 import chalk from "chalk";
 
-console.log(chalk.magenta("Hello!"));
+const run = async () => {
+  printWelcomeMessage();
+  const credentials = await askForCredentials();
 
-const age = async () => {
   const response = await prompts({
     type: "number",
     name: "age",
@@ -14,3 +15,17 @@ const age = async () => {
 };
 
 age();
+
+const name = async () => {
+  const response = await prompts({
+    type: "password",
+    name: "masterPassword",
+    message: "What is your master Password?",
+  });
+  if (response.masterPassword !== "abc123") {
+    console.warn(chalk.bgRed("Wrong!"));
+  }
+  console.log("Welcome back to Cryptus 🔑");
+};
+
+name();
