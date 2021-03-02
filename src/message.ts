@@ -6,7 +6,7 @@ export const printWelcomeMessage = () => {
   console.log(`Welcome to ${chalk.underline.bgMagenta("Cryptus")} 🔐`);
 };
 
-export const printNoAccess = () => {
+export const printCannotEnter = () => {
   console.warn(chalk.bgRed("Wrong master password! Please try again"));
 };
 

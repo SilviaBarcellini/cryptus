@@ -1,31 +1,27 @@
 import prompts from "prompts";
 import chalk from "chalk";
+import { printWelcomeMessage, printCannotEnter } from "./message";
+import { askForAction, askForCredentials } from "./questions";
+import { handleGetPassword, handleSetPassword, canEnter } from "./command";
 
 const run = async () => {
   printWelcomeMessage();
   const credentials = await askForCredentials();
-
-  const response = await prompts({
-    type: "number",
-    name: "age",
-    message: "How old are you?",
-    validate: (age) => (age < 18 ? `Sorry, Cryptus is 18+ only` : true),
-  });
-  console.log("Welcome to Cryptus 🔑");
-};
-
-age();
-
-const name = async () => {
-  const response = await prompts({
-    type: "password",
-    name: "masterPassword",
-    message: "What is your master Password?",
-  });
-  if (response.masterPassword !== "abc123") {
-    console.warn(chalk.bgRed("Wrong!"));
+  if (!canEnter(credentials.masterPassword)) {
+    printCannotEnter();
+    run();
+    return;
   }
-  console.log("Welcome back to Cryptus 🔑");
+
+  const action = await askForAction();
+  switch (action.command) {
+    case "set":
+      handleSetPassword(action.passwordName);
+      break;
+    case "get":
+      handleGetPassword(action.passwordName);
+      break;
+  }
 };
 
-name();
+run();
