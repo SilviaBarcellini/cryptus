@@ -1,13 +1,16 @@
 import prompts from "prompts";
+import chalk from "chalk";
 
-const run = async () => {
+console.log(chalk.magenta("Hello!"));
+
+const age = async () => {
   const response = await prompts({
     type: "number",
-    name: "value",
+    name: "age",
     message: "How old are you?",
-    validate: (value) => (value < 18 ? `Sorry, Cryptus is 18+ only` : true),
+    validate: (age) => (age < 18 ? `Sorry, Cryptus is 18+ only` : true),
   });
   console.log("Welcome to Cryptus 🔑");
 };
 
-run();
+age();
