@@ -13,7 +13,8 @@ import {
   connectDB,
   createPasswordDoc,
   readPasswordDoc,
-  updatePasswordDoc,
+  updatePasswordValue,
+  deletePasswordDoc,
 } from "./db";
 import { listenerCount } from "events";
 
@@ -24,9 +25,11 @@ const run = async () => {
 
   try {
     await connectDB(url, "cryptus-silvia");
-    await createPasswordDoc({ name: "Silvia", value: "1234" });
+    //await createPasswordDoc({ name: "Silvia", value: "1234" });
     console.log(await readPasswordDoc("Silvia"));
-    console.log(await updatePasswordDoc);
+    await updatePasswordValue("Silvia", "1111");
+    //await deletePasswordDoc("Silvia");
+    //console.log(await deletePasswordDoc("Silvia"));
     await closeDB();
   } catch (error) {
     console.error(error);

@@ -29,18 +29,23 @@ export async function readPasswordDoc(passwordName: string) {
   return await passwordCollection.findOne({ name: passwordName });
 }
 
-export async function updatePasswordDoc(
+export async function updatePasswordValue(
   passwordName: string,
-  passwordLastUpdate: string
+  newPasswordValue: string
 ) {
   const passwordCollection = await getCollection<PasswordDoc>("passwords");
   return await passwordCollection.updateOne(
     { name: passwordName },
-    { $set: { passwordLastUpdate: "030321" } }
+    { $set: { value: newPasswordValue } }
   );
 }
 
-export async function deletePasswordDoc(passwordName: string) {
+export async function deletePasswordDoc(
+  passwordName: string
+): Promise<Boolean> {
   const passwordCollection = await getCollection<PasswordDoc>("passwords");
-  return await passwordCollection.deleteOne({ name: Wifi });
+  const deleteResult = await passwordCollection.deleteOne({
+    name: passwordName,
+  });
+  return deleteResult.deletedCount >= 1;
 }
