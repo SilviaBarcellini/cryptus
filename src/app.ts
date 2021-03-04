@@ -15,6 +15,7 @@ import {
   readPasswordDoc,
   updatePasswordValue,
   deletePasswordDoc,
+  updatePasswordDoc,
 } from "./db";
 import { listenerCount } from "events";
 
