@@ -29,16 +29,26 @@ export async function readPasswordDoc(passwordName: string) {
   return await passwordCollection.findOne({ name: passwordName });
 }
 
+//(*)
+export async function updatePasswordDoc(
+  passwordName: string,
+  fieldsToUpdate: Partial<PasswordDoc>
+): Promise<Boolean> {
+  const passwordCollection = await getCollection<PasswordDoc>("passwords");
+  const updateResult = await passwordCollection.updateOne(
+    { name: passwordName },
+    { $set: fieldsToUpdate }
+  );
+  return updateResult.modifiedCount >= 1;
+}
+
 export async function updatePasswordValue(
   passwordName: string,
   newPasswordValue: string
-) {
-  const passwordCollection = await getCollection<PasswordDoc>("passwords");
-  return await passwordCollection.updateOne(
-    { name: passwordName },
-    { $set: { value: newPasswordValue } }
-  );
+): Promise<Boolean> {
+  return await updatePasswordDoc(passwordName, { value: newPasswordValue });
 }
+//(*)
 
 export async function deletePasswordDoc(
   passwordName: string
@@ -49,3 +59,6 @@ export async function deletePasswordDoc(
   });
   return deleteResult.deletedCount >= 1;
 }
+
+//(*) partial doesn't await for all the strings, but just for the fields I want to update!
+//save in a const and return update... to see if it worked!
