@@ -1,0 +1,14 @@
+### GET a password by name
+GET http://localhost:3333/api/passwords/kiwi
+
+### GET an unknown password by name
+GET http://localhost:3333/api/passwords/404404404
+
+### POST a new password
+POST http://localhost:3333/api/passwords
+Content-Type: application/json
+
+{
+    "name": "WiFi",
+    "value": "test1"
+} 
