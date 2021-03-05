@@ -1,13 +1,12 @@
 import { printPassword, printPasswordSet } from "./message";
 import { askForPasswordValue } from "./questions";
-/* import dotenv from "dotenv"; */
+import dotenv from "dotenv";
 import { closeDB, connectDB, createPasswordDoc, readPasswordDoc } from "./db";
 
-/* dotenv.config; */
+dotenv.config;
 
 export const canEnter = (masterPassword: string): boolean =>
-  masterPassword === "123456";
-/* process.env.CRYPTO_MASTER_PASSWORD; */
+  masterPassword === process.env.CRYPTO_MASTER_PASSWORD;
 
 export const handleSetPassword = async (
   passwordName: string
