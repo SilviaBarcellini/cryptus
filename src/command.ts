@@ -17,7 +17,7 @@ export const handleSetPassword = async (
     name: passwordName,
     value: passwordValue,
   };
-  await createPasswordDoc; //(passwordDoc) creates the problem #words)
+  await createPasswordDoc; //(passwordDoc creates the problem #words); ({ name: passwordName, value: passwordValue });
   printPasswordSet(passwordName);
   console.log(`${passwordName}`);
 };
