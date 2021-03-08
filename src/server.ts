@@ -18,6 +18,20 @@ const server = http.createServer(async (request, response) => {
     /* response.end("test..."); */
     return;
   }
+
+  if (request.method === "POST") {
+    handlePost(request, response);
+    return;
+  }
+
+  const parts = request.url.match(/\/api\/passwords\/(\w+)/);
+  if (!parts) {
+    response.statusCode = 400;
+    response.end();
+    return;
+  }
+  const [, passwordName] = parts;
+
   if (request.method === "GET") {
     handleGet(request, response, passwordName);
     return;
