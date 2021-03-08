@@ -33,7 +33,6 @@
     "crypto-js": "^4.0.0",
     "dotenv": "^8.2.0",
     "mongodb": "^3.6.3",
-    "prompts": "^2.4.0",
-    "server": "^1.0.32"
+    "prompts": "^2.4.0"
   }
 }
