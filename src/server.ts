@@ -1,11 +1,7 @@
 import http from "http";
 import dotenv from "dotenv";
-import {
-  connectDB,
-  readPasswordDoc,
-  createPasswordDoc,
-  deletePasswordDoc,
-} from "./db";
+import { connectDB } from "./db";
+import { handleDelete, handleGet, handlePost } from "./routes";
 
 dotenv.config();
 
@@ -22,36 +18,15 @@ const server = http.createServer(async (request, response) => {
     /* response.end("test..."); */
     return;
   }
-
-  const parts = request.url.split("/");
-  const passwordName = parts[parts.length - 1];
-
   if (request.method === "GET") {
-    const passwordDoc = await readPasswordDoc(passwordName);
-    if (!passwordDoc) {
-      response.statusCode = 404;
-      response.end();
-      return;
-    }
-    response.statusCode = 200;
-    response.setHeader("Content-Type", "application/json");
-    response.end(JSON.stringify(passwordDoc));
-    console.log();
-    return;
-  } else if (request.method === "DELETE") {
-    const passwordDoc = await readPasswordDoc(passwordName);
-    if (!passwordDoc) {
-      response.statusCode = 400;
-      response.end();
-      return;
-    }
-    response.statusCode = 200;
-    response.setHeader("Content-Type", "application/json");
-    response.end(JSON.stringify(await deletePasswordDoc(passwordName)));
-    console.log();
+    handleGet(request, response, passwordName);
     return;
   }
-  response.end();
+  if (request.method === "DELETE") {
+    handleDelete(request, response, passwordName);
+    return;
+  }
+  response.statusCode = 405;
 });
 
 server.listen(port, () => {
