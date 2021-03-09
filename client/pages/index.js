@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "styled-components";
 
 export default function Home() {
   const [passwordName, setPasswordName] = useState("");
@@ -19,7 +20,8 @@ export default function Home() {
           value={passwordName}
           onChange={(event) => setPasswordName(event.target.value)}
         />
-        <button type="submit">Send</button>
+
+        <SubmitButton type="submit">Send</SubmitButton>
       </form>
       {passwordDoc && (
         <>
