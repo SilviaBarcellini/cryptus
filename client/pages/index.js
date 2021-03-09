@@ -17,10 +17,9 @@ export default function Home() {
       <form onSubmit={(e) => handleSubmit(e)}>
         <input
           value={passwordName}
-          onChange
-          {...(event) => setPasswordName(event.target.value)}
+          onChange={(event) => setPasswordName(event.target.value)}
         />
-        <button type="submit">Send!</button>
+        <button type="submit">Send</button>
       </form>
       {passwordDoc && (
         <>
